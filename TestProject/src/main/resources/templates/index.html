@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo Application</title>
+</head>
+<body>
+<h1>ToDo List</h1>
+
+<form action="/create" method="post">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Create ToDo</button>
+</form>
+
+<form action="/update" method="post">
+    <input type="number" name="id" placeholder="ToDo ID" required>
+    <select name="status">
+        <option value="PENDING">Pending</option>
+        <option value="COMPLETED">Completed</option>
+    </select>
+    <button type="submit">Update Status</button>
+</form>
+
+<ul>
+    <th:block th:each="todo : ${todos}">
+        <li>
+            <span th:text="${todo.id}"></span>
+            <span th:text="${todo.title}"></span> -
+            <span th:text="${todo.description}"></span> -
+            <span th:text="${todo.status}"></span>
+        </li>
+    </th:block>
+</ul>
+</body>
+</html>
